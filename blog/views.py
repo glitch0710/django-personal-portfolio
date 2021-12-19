@@ -4,6 +4,7 @@ from blog.models import Blog
 
 def all_blogs(request):
     blogs = Blog.objects.order_by('-post_date')[:5]
+    count2 = Blog.objects.all()
     count = Blog.objects.count()
 
     if count > 1:
@@ -11,7 +12,7 @@ def all_blogs(request):
     else:
         count = str(count) + ' blog'
 
-    return render(request, 'blog/all_blogs.html', {'blogs': blogs, 'count': count})
+    return render(request, 'blog/all_blogs.html', {'blogs': blogs, 'count': count, 'count2': count2})
 
 
 def blog_details(request, blog_id):
