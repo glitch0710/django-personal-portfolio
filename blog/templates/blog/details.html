@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog Details | {{ blog.id }}</title>
-</head>
-<body>
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
     <h1>{{ blog.post_title }}</h1>
     <h5>{{ blog.post_date|date:'l, F d Y'|upper }}</h5>
     <br>
     <p>{{ blog.post_desc }}</p>
-</body>
-</html>
+
+{% endblock %}

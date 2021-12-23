@@ -1,28 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Homepage</title>
-</head>
-<body>
-    <h1>Rhogiel's Portfolio</h1>
+{% extends 'portfolio/base.html' %}
 
+{% block content %}
     {% load static %}
+    <style>
+        .img-profile{
+            border-radius: 50%;
+            width: 250px;
+            border: 5px solid #555;
+        }
+        .img-projects{
+            width: 100%;
+            height: 200px;
+        }
+    </style>
 
-    <img src="{% static 'portfolio/andoy.jpg' %}">
+    <div class="text-center">
+        <br>
+        <h1>Rhogiel's Portfolio</h1>
+        <br>
+        <img src="{% static 'portfolio/andoy.jpg' %}" class="img-profile">
+        <br>
+        <br>
+        <p><strong><i>DBA | Developer</i></strong></p>
+    </div>
     <br>
-    <a href="{% static 'portfolio/RHOGIEL V. ANDOY.pdf' %}" target="_blank">Resume</a>
-    <a href="{% url 'blog:all_blogs' %}" target="_blank">Blogs</a>
-
-    {% for project in projects %}
-    <h2>{{ project.title }}</h2>
-    <p>{{ project.desc }}</p>
-    <img src="{{ project.image.url }}" alt="{{ project.title }}">
-    {% if project.url %}
     <br>
-    <a href="{{ project.url }}">Link</a>
-    {% endif %}
-    {% endfor %}
+    <div class="container">
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow" style="width: 18rem;">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-projects">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.desc }}</p>
+                        {% if project.url %}
+                        <br>
+                        <a href="{{ project.url }}" class="btn btn-primary">Go to Project</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
-</body>
-</html>
+
+{% endblock %}
