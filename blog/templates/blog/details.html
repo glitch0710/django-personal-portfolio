@@ -2,9 +2,15 @@
 
 {% block content %}
 
-    <h1>{{ blog.post_title }}</h1>
-    <h5>{{ blog.post_date|date:'l, F d Y'|upper }}</h5>
-    <br>
-    <p>{{ blog.post_desc }}</p>
+    <div class="container">
+        <br>
+        <h1>{{ blog.post_title }}</h1>
+        <p class="font-monospace">{{ blog.post_date|date:'l, F d Y'|upper }}</p>
+        <hr>
+        <br>
+        <p class="text-justify">{{ blog.post_desc }}</p>
+        <hr>
+        <a href="{% url 'blog:all_blogs' %}" class="btn btn-sm btn-info text-white">Back</a>
+    </div>
 
 {% endblock %}
